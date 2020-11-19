@@ -16,8 +16,8 @@
     }
   },
   "scripts": {
-    "dev": "meteor --settings settings-development.json",
-    "start": "meteor --settings settings-development.json",
+    "dev": "meteor --settings settings-development.json", 
+    "start": "npm run dev",
     "deploy": "node ../.deploy codenerd",
     "certificates": "cd ~/projects/cleverbeagle/.deploy && kubectl --kubeconfig='kubectl_config' describe certificate",
     "cluster": "doctl kubernetes cluster get cleverbeagle",
@@ -58,6 +58,7 @@
     "jszip": "^3.2.2",
     "juice": "^5.2.0",
     "lodash": "^4.17.20",
+    "meteor-desktop-system-notifications": "^0.0.2",
     "meteor-node-stubs": "^0.4.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",

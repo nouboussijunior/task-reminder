@@ -24,6 +24,28 @@ import Icon from '../../components/Icon';
 class Documents extends React.Component {
   state = { showPassword: false, password: '' };
 
+
+  shwoNotification = () => {
+    const notification = new Notification("Echéance bientot atteinte!", {
+      body: "Hey! La tache ... arrive à échéance dans 2 jours!"
+    })
+    // return notification;
+  }
+
+  componentDidMount = () => {
+    const permission = Notification.permission;
+    
+    console.log(permission);
+    if(permission === "granted"){
+      this.shwoNotification();
+    }else if(permission !== "denied"){
+      Notification.requestPermission().then(perm => {
+        console.log(perm);
+      })
+    }
+  }
+  
+
   handleSubmit = (form) => {
     const { addDocument } = this.props;
     addDocument({
