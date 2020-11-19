@@ -1,8 +1,10 @@
 fragment DocumentAttributes on Document {
   _id
   isPublic
-  title
-  body
+  taskName
+  deadLine
+  status
+  remindingDate
   updatedAt
   createdAt
 }

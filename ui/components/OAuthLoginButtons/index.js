@@ -15,6 +15,7 @@ const OAuthLoginButtons = ({ emailMessage, data: { oAuthServices, loading } }) =
         {oAuthServices.length ? (
           <Styles.OAuthLoginButtons emailMessage={emailMessage}>
             {oAuthServices.map((service) => (
+              // service != "github" && <OAuthLoginButton key={service} service={service} />
               <OAuthLoginButton key={service} service={service} />
             ))}
             {emailMessage && (

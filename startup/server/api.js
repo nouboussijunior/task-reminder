@@ -40,8 +40,8 @@ const schema = {
     }
 
     type Mutation {
-      addDocument(title: String, body: String): Document
-      updateDocument(_id: String!, title: String, body: String, isPublic: Boolean): Document
+      addDocument(taskName: String, deadLine: String, status: String, remindingDate: String): Document
+      updateDocument(_id: String!, taskName: String, deadLine: String, status: String, remindingDate: String, isPublic: Boolean): Document
       removeDocument(_id: String!): Document
       addComment(documentId: String!, comment: String!): Comment
       removeComment(commentId: String!): Comment

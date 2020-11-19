@@ -46,14 +46,14 @@ class Signup extends React.Component {
           <Col xs={12}>
             <h4 className="page-header">Sign Up</h4>
             <Row>
-              <Col xs={12}>
+              {/* <Col xs={12}>
                 <OAuthLoginButtons
                   emailMessage={{
                     offset: 97,
                     text: 'Sign Up with an Email Address',
                   }}
                 />
-              </Col>
+              </Col> */}
             </Row>
             <Validation
               rules={{
@@ -96,53 +96,53 @@ class Signup extends React.Component {
                 <Row>
                   <Col xs={6}>
                     <FormGroup>
-                      <ControlLabel>First Name</ControlLabel>
+                      <ControlLabel>Prénom</ControlLabel>
                       <input
                         type="text"
                         name="firstName"
                         className="form-control"
-                        placeholder="First Name"
+                        placeholder="Prénom"
                       />
                     </FormGroup>
                   </Col>
                   <Col xs={6}>
                     <FormGroup>
-                      <ControlLabel>Last Name</ControlLabel>
+                      <ControlLabel>Nom</ControlLabel>
                       <input
                         type="text"
                         name="lastName"
                         className="form-control"
-                        placeholder="Last Name"
+                        placeholder="Nom"
                       />
                     </FormGroup>
                   </Col>
                 </Row>
                 <FormGroup>
-                  <ControlLabel>Email Address</ControlLabel>
+                  <ControlLabel>Addresse email</ControlLabel>
                   <input
                     type="email"
                     name="emailAddress"
                     className="form-control"
-                    placeholder="Email Address"
+                    placeholder="Adresse email"
                   />
                 </FormGroup>
                 <FormGroup>
-                  <ControlLabel>Password</ControlLabel>
+                  <ControlLabel>Mot de passe</ControlLabel>
                   <input
                     type="password"
                     name="password"
                     className="form-control"
-                    placeholder="Password"
+                    placeholder="Mot de passse"
                   />
-                  <InputHint>Use at least six characters.</InputHint>
+                  <InputHint>Utilisez au moins 6 caractères.</InputHint>
                 </FormGroup>
                 <Button type="submit" bsStyle="success" block>
-                  Sign Up
+                  Valider
                 </Button>
                 <AccountPageFooter>
                   <p>
-                    Already have an account?
-                    <Link to="/login">Log In</Link>
+                    Vous avez déjà un compte?
+                    <Link to="/login">Se connecter</Link>
                     {'.'}
                   </p>
                 </AccountPageFooter>

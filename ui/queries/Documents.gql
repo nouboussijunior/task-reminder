@@ -4,7 +4,10 @@ query documents {
   documents {
     _id
     isPublic
-    title
+    taskName
+    deadLine
+    status
+    remindingDate
     updatedAt
     createdAt
   }

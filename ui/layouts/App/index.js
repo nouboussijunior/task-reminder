@@ -64,13 +64,13 @@ class App extends React.Component {
     const { props, state, setAfterLoginPath } = this;
     return (
       <Styles.App ready={state.ready} loading={`${props.loading}`}>
-        {props.authenticated && (
+        {/* {props.authenticated && (
           <VerifyEmailAlert
             userId={props.userId}
             emailVerified={props.emailVerified}
             emailAddress={props.emailAddress}
           />
-        )}
+        )} */}
         {props.authenticated && <GDPRConsentModal userId={props.userId} />}
         <Navigation {...props} {...state} />
         <Grid>

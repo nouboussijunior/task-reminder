@@ -1,21 +1,25 @@
-mutation addDocument($title: String, $body: String) {
-  addDocument(title: $title, body: $body) {
+mutation addDocument($taskName: String, $deadLine: String, $status: String $remindingDate: String) {
+  addDocument(taskName: $taskName, deadLine: $deadLine, status: $status, remindingDate: $remindingDate) {
     _id
     isPublic
-    title
-    body
+    taskName
+    deadLine
+    status
+    remindingDate
     createdAt
     updatedAt
     owner
   }
 }
 
-mutation updateDocument($_id: String!, $title: String, $body: String, $isPublic: Boolean) {
-  updateDocument(_id: $_id, title: $title, body: $body, isPublic: $isPublic) {
+mutation updateDocument($_id: String!, $taskName: String, $deadLine: String, $status: String, $remindingDate: String, $isPublic: Boolean) {
+  updateDocument(_id: $_id, taskName: $taskName, deadLine: $deadLine, status: $status, remindingDate: $remindingDate, isPublic: $isPublic) {
     _id
     isPublic
-    title
-    body
+    taskName
+    deadLine
+    status
+    remindingDate
     createdAt
     updatedAt
     owner

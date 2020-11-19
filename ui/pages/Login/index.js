@@ -34,15 +34,15 @@ class Login extends React.Component {
         </LoginPromo>
         <Row>
           <Col xs={12}>
-            <h4 className="page-header">Log In</h4>
+            <h4 className="page-header">Connexion</h4>
             <Row>
               <Col xs={12}>
-                <OAuthLoginButtons
+                {/* <OAuthLoginButtons
                   emailMessage={{
                     offset: 100,
                     text: 'Log In with an Email Address',
                   }}
-                />
+                /> */}
               </Col>
             </Row>
             <Validation
@@ -70,7 +70,7 @@ class Login extends React.Component {
             >
               <form ref={(form) => (this.form = form)} onSubmit={(event) => event.preventDefault()}>
                 <FormGroup>
-                  <ControlLabel>Email Address</ControlLabel>
+                  <ControlLabel>Adresse mail</ControlLabel>
                   <input
                     type="email"
                     name="emailAddress"
@@ -81,9 +81,9 @@ class Login extends React.Component {
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel className="clearfix">
-                    <span className="pull-left">Password</span>
+                    <span className="pull-left">Mot de passe</span>
                     <Link className="pull-right" to="/recover-password">
-                      Forgot password?
+                      Mot de passe oublié?
                     </Link>
                   </ControlLabel>
                   <input
@@ -95,12 +95,12 @@ class Login extends React.Component {
                   />
                 </FormGroup>
                 <Button type="submit" bsStyle="success" block>
-                  Log In
+                  Se Connecter
                 </Button>
                 <AccountPageFooter>
                   <p>
-                    {"Don't have an account? "}
-                    <Link to="/signup">Sign Up</Link>
+                    {"Vous n'avez pas de compte? "}
+                    <Link to="/signup">Créez un compte</Link>
                     {'.'}
                   </p>
                 </AccountPageFooter>

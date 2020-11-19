@@ -6,12 +6,12 @@ const PublicNavigation = () => (
   <Nav pullRight>
     <LinkContainer to="/signup">
       <NavItem eventKey={1} href="/signup">
-        Sign Up
+        Créer un compte
       </NavItem>
     </LinkContainer>
     <LinkContainer to="/login">
       <NavItem eventKey={2} href="/login">
-        Log In
+        Se connecter
       </NavItem>
     </LinkContainer>
   </Nav>

@@ -10,7 +10,7 @@ const AuthenticatedNavigation = ({ name, history, userId }) => (
     <Nav>
       <LinkContainer to="/documents">
         <NavItem eventKey={1} href="/documents">
-          Documents
+          Tâches
         </NavItem>
       </LinkContainer>
       {Roles.userIsInRole(userId, 'admin') && (
@@ -37,7 +37,7 @@ const AuthenticatedNavigation = ({ name, history, userId }) => (
         </LinkContainer>
         <MenuItem divider />
         <MenuItem eventKey={2.2} onClick={() => history.push('/logout')}>
-          Logout
+          Déconnexion
         </MenuItem>
       </NavDropdown>
     </Nav>
