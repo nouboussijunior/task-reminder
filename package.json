@@ -17,6 +17,7 @@
   },
   "scripts": {
     "dev": "meteor --settings settings-development.json",
+    "start": "meteor --settings settings-development.json",
     "deploy": "node ../.deploy codenerd",
     "certificates": "cd ~/projects/cleverbeagle/.deploy && kubectl --kubeconfig='kubectl_config' describe certificate",
     "cluster": "doctl kubernetes cluster get cleverbeagle",

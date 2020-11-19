@@ -3,11 +3,11 @@
     "graphQL": {
       "httpUri": "http://localhost:3000/graphql"
     },
-    "productName": "Product Name",
+    "productName": "Tasks Reminder",
     "copyrightStartYear": "2018",
     "twitterUsername": "product",
     "facebookUsername": "product",
-    "productAddress": "1658 N. Milwaukee Ave., #393, Chicago, IL 60647"
+    "productAddress": "Yaounde, Cameroon"
   },
   "private": {
     "MAIL_URL": "",
@@ -31,6 +31,6 @@
         "loginStyle": "popup"
       }
     },
-    "supportEmail": "Customer Support <support@product.com>"
+    "supportEmail": "Customer Support <nouboussijunior@gmail.com>"
   }
 }
