@@ -12,23 +12,23 @@ export const StyledListGroupItem = styled(ListGroupItem)`
   margin: auto;
   vertical-align: middle;
 
-  .taskItem{
+  .taskItem {
     margin-top: auto;
     margin-bottom: auto;
   }
 
-  i{
+  i {
     cursor: pointer;
   }
 
-  .deleteTask i:hover{
-    color: #D9534F;
+  .deleteTask i:hover {
+    color: #d9534f;
   }
 
-  .resolvedTask i{
-    color: #5CB85C;
+  .resolvedTask i {
+    color: #5cb85c;
   }
-  
+
   .label {
     display: inline-block;
     position: absolute;
@@ -36,11 +36,11 @@ export const StyledListGroupItem = styled(ListGroupItem)`
     right: -10%;
   }
 
-  .lineThrough{
+  .lineThrough {
     text-decoration: line-through;
   }
-  
-  .resolveTask{
+
+  .resolveTask {
     cursor: pointer;
   }
 
@@ -101,7 +101,7 @@ export const StyledDocuments = styled.div`
     margin: 0px 0 20px;
   }
 
-  .transparent{
+  .transparent {
     color: transparent;
   }
 

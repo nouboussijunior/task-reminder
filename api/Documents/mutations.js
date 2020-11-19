@@ -2,20 +2,19 @@ import sanitizeHtml from 'sanitize-html';
 import Documents from './Documents';
 
 export default {
-  addDocument: (root, args, context) => { console.log(args);
+  addDocument: (root, args, context) => {
+    console.log(args);
     if (!context.user) throw new Error('Sorry, you must be logged in to add a new document.');
     const date = new Date().toISOString();
     const documentId = Documents.insert({
       isPublic: args.isPublic || false,
-      taskName:
-        args.taskName ||
-        `Untitled task`,
-        owner: context.user._id,
-        deadLine: args.deadLine || "No-deadLine",
-        status: args.status || "pending",
-        remindingDate: args.remindingDate || "No-date",
-        createdAt: date,
-        updatedAt: date,
+      taskName: args.taskName || `Untitled task`,
+      owner: context.user._id,
+      deadLine: args.deadLine || 'No-deadLine',
+      status: args.status || 'pending',
+      remindingDate: args.remindingDate || 'No-date',
+      createdAt: date,
+      updatedAt: date,
     });
     const doc = Documents.findOne(documentId);
     return doc;
@@ -29,7 +28,7 @@ export default {
       {
         $set: {
           ...args,
-          // body: sanitizeHtml(args.body), 
+          // body: sanitizeHtml(args.body),
           updatedAt: new Date().toISOString(),
         },
       },
