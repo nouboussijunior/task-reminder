@@ -16,7 +16,7 @@
     }
   },
   "scripts": {
-    "dev": "meteor --settings settings-development.json", 
+    "dev": "meteor --settings settings-development.json",
     "start": "npm run dev",
     "deploy": "node ../.deploy codenerd",
     "certificates": "cd ~/projects/cleverbeagle/.deploy && kubectl --kubeconfig='kubectl_config' describe certificate",
@@ -47,6 +47,8 @@
     "body-parser": "^1.19.0",
     "commonmark": "^0.29.0",
     "core-js": "^3.1.4",
+    "electron": "^11.0.2",
+    "electron-notifications": "^0.1.6",
     "file-saver": "^2.0.2",
     "graphql": "^14.4.2",
     "graphql-tag": "^2.10.1",

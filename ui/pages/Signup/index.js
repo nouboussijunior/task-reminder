@@ -44,7 +44,7 @@ class Signup extends React.Component {
       <StyledSignup>
         <Row>
           <Col xs={12}>
-            <h4 className="page-header">Sign Up</h4>
+            <h4 className="page-header">Créez votre compte</h4>
             <Row>
               {/* <Col xs={12}>
                 <OAuthLoginButtons
@@ -142,7 +142,7 @@ class Signup extends React.Component {
                 <AccountPageFooter>
                   <p>
                     Vous avez déjà un compte?
-                    <Link to="/login">Se connecter</Link>
+                    <Link to="/login"> Connectez-vous</Link>
                     {'.'}
                   </p>
                 </AccountPageFooter>
