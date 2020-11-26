@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Row, Col, FormGroup, ControlLabel, Button, Tabs, Tab } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { compose, graphql } from 'react-apollo';
+import { Meteor } from 'meteor/meteor';
+import { difference } from 'lodash';
 import { timeago } from '../../../modules/dates';
 import BlankState from '../../components/BlankState';
 import {
@@ -20,8 +22,6 @@ import {
 } from '../../mutations/Documents.gql';
 import Validation from '../../components/Validation';
 import Icon from '../../components/Icon';
-import { Meteor } from 'meteor/meteor';
-import { difference } from 'lodash';
 
 class Documents extends React.Component {
   state = { showPassword: false, password: '', pendingTasks: [] };
@@ -35,7 +35,9 @@ class Documents extends React.Component {
 
   componentDidMount = () => {
     // this.browseAllTasks();
-    let intervalID = setInterval(() => {this.browseAllTasks()}, 10000);
+    const intervalID = setInterval(() => {
+      this.browseAllTasks();
+    }, 10000);
     const { permission } = Notification;
 
     console.log(permission);
@@ -49,65 +51,74 @@ class Documents extends React.Component {
   };
 
   componentDidUpdate = (prevProps, prevState, snapshot) => {
-    let allPendingTasks = [];
+    const allPendingTasks = [];
     // console.log(this.props.data.documents);
-    console.log("updated");
-    if(this.props.data && this.props.data.documents){
-      const documents = this.props.data.documents;
-      for(let i=0; i < this.props.data.documents.length; i++){
+    console.log('updated');
+    if (this.props.data && this.props.data.documents) {
+      const { documents } = this.props.data;
+      for (let i = 0; i < this.props.data.documents.length; i++) {
         // console.log(documents);
-        if(documents[i].status == "pending"){
+        if (documents[i].status == 'pending') {
           allPendingTasks.push(documents[i]);
         }
       }
-      if(prevProps !== this.props){
+      if (prevProps !== this.props) {
         this.setState({
-          pendingTasks: allPendingTasks
-        })
+          pendingTasks: allPendingTasks,
+        });
       }
     }
     console.log(this.state.pendingTasks);
     this.browseAllTasks();
-  } 
+  };
 
   browseAllTasks = () => {
-    for(let i = 0; i < this.state.pendingTasks.length; i++){
+    for (let i = 0; i < this.state.pendingTasks.length; i++) {
       this.checkTaskStatus(this.state.pendingTasks[i]._id);
     }
-  }
+  };
 
   checkTaskStatus = (taskId) => {
-    Meteor.call('checkTaskStatus', taskId, (err, res) =>{
+    Meteor.call('checkTaskStatus', taskId, (err, res) => {
       if (err) Bert.alert('An error occured!', 'danger');
       let remindingDate = new Date(res.remindingDate);
-      if(res.remindingDate === "No-date"){
-        remindingDate = new Date(res.deadLine) - 2*1000*60*60*24;
+      if (res.remindingDate === 'No-date') {
+        remindingDate = new Date(res.deadLine) - 2 * 1000 * 60 * 60 * 24;
       }
-      const daysDifference = (new Date() - remindingDate) / (1000*60*60);
-      if(daysDifference <= 0){
-        this.shwoNotification('Echéance bientot atteinte!', "Hey! L'échéance d'une tache est dépassée");
+      const daysDifference = (new Date() - remindingDate) / (1000 * 60 * 60);
+      if (daysDifference <= 0) {
+        this.shwoNotification(
+          'Echéance bientot atteinte!',
+          "Hey! L'échéance d'une tache est dépassée",
+        );
         this.playSound();
-      }else if(daysDifference <= 12+10){
-        this.shwoNotification('Echéance bientot atteinte!', "Hey! Une tache arrive à échéance dans quelques heures!");
+      } else if (daysDifference <= 12 + 10) {
+        this.shwoNotification(
+          'Echéance bientot atteinte!',
+          'Hey! Une tache arrive à échéance dans quelques heures!',
+        );
         this.playSound();
-      }else if(daysDifference <= 24+10){
-        this.shwoNotification('Echéance bientot atteinte!', "Hey! Une tache arrive à échéance dans 1 jour!");
+      } else if (daysDifference <= 24 + 10) {
+        this.shwoNotification(
+          'Echéance bientot atteinte!',
+          'Hey! Une tache arrive à échéance dans 1 jour!',
+        );
         this.playSound();
-      }else if(daysDifference <= 48+10){
-        this.shwoNotification("Echance dépassée", "Hey! Une tache arrive à échéance dans 2 jours!");
+      } else if (daysDifference <= 48 + 10) {
+        this.shwoNotification('Echance dépassée', 'Hey! Une tache arrive à échéance dans 2 jours!');
         this.playSound();
       }
       console.log(daysDifference);
       // this.setState({
       //   admins: res,
       // })
-    })
-  }
+    });
+  };
 
   playSound = () => {
-    const audio = new Audio("/sound.mp3");
-    audio.play()
-  }
+    const audio = new Audio('/sound.mp3');
+    audio.play();
+  };
 
   handleSubmit = (form) => {
     this.playSound();
@@ -157,15 +168,16 @@ class Documents extends React.Component {
   };
 
   simulateClick = (e) => {
-    e.target.click()
-  }
+    console.log(e);
+    e.target.click();
+  };
 
   render() {
     const { data } = this.props;
     const { name } = this.props;
     return (
       // const Documents = ({ data, mutate }) => (
-      <StyledDocuments ref={this.simulateClick}>
+      <StyledDocuments>
         <header className="clearfix">
           <h3>Bienvenue {name}!</h3>
         </header>
@@ -202,6 +214,7 @@ class Documents extends React.Component {
                       type="text"
                       name="taskName"
                       placeholder="Nouvelle tâche"
+                      // ref={this.simulateClick}
                       // defaultValue={user.name.first}
                       className="form-control"
                     />
