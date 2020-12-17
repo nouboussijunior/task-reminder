@@ -37,7 +37,7 @@ class Documents extends React.Component {
     // this.browseAllTasks();
     const intervalID = setInterval(() => {
       this.browseAllTasks();
-    }, 10000);
+    }, 300000);   //We check all task status after each 5 minutes
     const { permission } = Notification;
 
     console.log(permission);
@@ -81,14 +81,18 @@ class Documents extends React.Component {
   checkTaskStatus = (taskId) => {
     Meteor.call('checkTaskStatus', taskId, (err, res) => {
       if (err) Bert.alert('An error occured!', 'danger');
-      let remindingDate = new Date(res.remindingDate);
-      if (res.remindingDate === 'No-date') {
-        remindingDate = new Date(res.deadLine) - 2 * 1000 * 60 * 60 * 24;
-      }
-      const daysDifference = (new Date() - remindingDate) / (1000 * 60 * 60);
+      // let remindingDate = new Date(res.remindingDate);
+      // if (res.remindingDate === 'No-date') {
+      let remindingDate = new Date(res.deadLine);
+      remindingDate.setDate(remindingDate.getDate()-2);
+      // }
+      const daysDifference = -(new Date() - remindingDate) / (1000 * 60 * 60);
+      console.log(res.deadLine);
+      console.log(remindingDate);
+      console.log(daysDifference);
       if (daysDifference <= 0) {
         this.shwoNotification(
-          'Echéance bientot atteinte!',
+          'Echéance dépassée!',
           "Hey! L'échéance d'une tache est dépassée",
         );
         this.playSound();
@@ -108,7 +112,7 @@ class Documents extends React.Component {
         this.shwoNotification('Echance dépassée', 'Hey! Une tache arrive à échéance dans 2 jours!');
         this.playSound();
       }
-      console.log(daysDifference);
+      // console.log(daysDifference);
       // this.setState({
       //   admins: res,
       // })
@@ -121,16 +125,16 @@ class Documents extends React.Component {
   };
 
   handleSubmit = (form) => {
-    this.playSound();
-    // const { addDocument } = this.props;
-    // addDocument({
-    //   variables: {
-    //     taskName: form.taskName.value,
-    //     deadLine: form.taskDeadLine.value,
-    //     remindingDate: form.remindingDate.value,
-    //     status: 'pending',
-    //   },
-    // });
+    // this.playSound();
+    const { addDocument } = this.props;
+    addDocument({
+      variables: {
+        taskName: form.taskName.value,
+        deadLine: form.taskDeadLine.value,
+        // remindingDate: form.remindingDate.value,
+        status: 'pending',
+      },
+    });
   };
 
   resolveTask = (taskId) => {
@@ -157,11 +161,14 @@ class Documents extends React.Component {
   getTaskPeriod = (deadLine) => {
     const dtDeadLine = new Date(deadLine);
     const dateNow = new Date();
-    const diff = dtDeadLine.getDate() - dateNow.getDate();
-    if (diff < 3) {
+    const diff = (dtDeadLine - dateNow) / (1000 * 60 * 60 * 24); //We convert from milliseconds to days
+    console.log(deadLine)
+    console.log(dtDeadLine)
+    console.log(diff)
+    if (diff < 2) {
       return 'danger';
     }
-    if (diff == 3) {
+    if (diff > 2 && diff < 3) {
       return 'warning';
     }
     return 'success';
@@ -220,7 +227,7 @@ class Documents extends React.Component {
                     />
                   </FormGroup>
                 </Col>
-                <Col md={2}>
+                <Col md={4}>
                   <FormGroup>
                     <label>Echéance</label>
                     <input
@@ -232,7 +239,7 @@ class Documents extends React.Component {
                     />
                   </FormGroup>
                 </Col>
-                <Col md={2}>
+                {/* <Col md={2}>
                   <FormGroup>
                     <label>Rappel</label>
                     <input
@@ -243,7 +250,7 @@ class Documents extends React.Component {
                       className="form-control"
                     />
                   </FormGroup>
-                </Col>
+                </Col> */}
                 <Col md={2}>
                   <label className="transparent">Valider</label>
                   <Button type="submit" bsStyle="success" className="">
