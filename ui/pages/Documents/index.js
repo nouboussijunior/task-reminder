@@ -37,7 +37,7 @@ class Documents extends React.Component {
     // this.browseAllTasks();
     const intervalID = setInterval(() => {
       this.browseAllTasks();
-    }, 300000);   //We check all task status after each 5 minutes
+    }, 300000); // We check all task status after each 5 minutes
     const { permission } = Notification;
 
     console.log(permission);
@@ -83,18 +83,15 @@ class Documents extends React.Component {
       if (err) Bert.alert('An error occured!', 'danger');
       // let remindingDate = new Date(res.remindingDate);
       // if (res.remindingDate === 'No-date') {
-      let remindingDate = new Date(res.deadLine);
-      remindingDate.setDate(remindingDate.getDate()-2);
+      const remindingDate = new Date(res.deadLine);
+      // remindingDate.setDate(remindingDate.getDate() - 2);
       // }
       const daysDifference = -(new Date() - remindingDate) / (1000 * 60 * 60);
       console.log(res.deadLine);
       console.log(remindingDate);
       console.log(daysDifference);
       if (daysDifference <= 0) {
-        this.shwoNotification(
-          'Echéance dépassée!',
-          "Hey! L'échéance d'une tache est dépassée",
-        );
+        this.shwoNotification('Echéance dépassée!', "Hey! L'échéance d'une tache est dépassée");
         this.playSound();
       } else if (daysDifference <= 12 + 10) {
         this.shwoNotification(
@@ -161,10 +158,10 @@ class Documents extends React.Component {
   getTaskPeriod = (deadLine) => {
     const dtDeadLine = new Date(deadLine);
     const dateNow = new Date();
-    const diff = (dtDeadLine - dateNow) / (1000 * 60 * 60 * 24); //We convert from milliseconds to days
-    console.log(deadLine)
-    console.log(dtDeadLine)
-    console.log(diff)
+    const diff = (dtDeadLine - dateNow) / (1000 * 60 * 60 * 24); // We convert from milliseconds to days
+    console.log(deadLine);
+    console.log(dtDeadLine);
+    console.log(diff);
     if (diff < 2) {
       return 'danger';
     }
@@ -186,7 +183,7 @@ class Documents extends React.Component {
       // const Documents = ({ data, mutate }) => (
       <StyledDocuments>
         <header className="clearfix">
-          <h3>Bienvenue {name}!</h3>
+          <h3>Bienvenue{name}!</h3>
         </header>
 
         <div>
